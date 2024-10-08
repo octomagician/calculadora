@@ -9,14 +9,22 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import android.widget.TextView;
+import android.view.View;
 package java.calculos;
 import java.calculos.operacion;
 
-private Operacion operacion;
-private String resultado = "";
+public class MainActivity extends AppCompatActivity {
+
+    private Operacion operacion;
+    private String actual = "";
+    private TextView resultado;
+
+    protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -73,9 +81,9 @@ private String resultado = "";
             @Override
             public void onClick(View view) {
                 operacion.setValor2(Double.parseDouble(actual));
-                double resultado = operacion.hacerOperacion();
+                double res = operacion.hacerOperacion();
                 resultado.setText(String.valueOf(resultado));
-                operacion.reiniciar();
+            actual = "";
             }
         });
     }
